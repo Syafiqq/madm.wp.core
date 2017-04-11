@@ -48,7 +48,6 @@ public class WP
     {
         if(alternatives.size() > 0)
         {
-            this.compile();
             for(final Alternative alternative : this.alternatives)
             {
                 alternative.calculatePreferences(this.weight);
@@ -65,7 +64,6 @@ public class WP
     {
         if(alternatives.size() > 0)
         {
-            this.compile();
             for(final Alternative alternative : this.alternatives)
             {
                 alternative.collectPreferences(this.preferenceAccumulator);
