@@ -40,7 +40,9 @@ public class TestSystem
         wp.compile();
         wp.calculate();
         wp.ranking();
+        wp.sort();
 
         System.out.println(wp.getBestAlternative());
+        System.out.println(wp.getAlternatives());
     }
 }
