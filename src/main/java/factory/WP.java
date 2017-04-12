@@ -1,9 +1,10 @@
 package factory;
 
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 /*
  * This <wp> created by : 
@@ -14,10 +15,10 @@ import java.util.List;
  */
 public class WP
 {
-    private List<Alternative> alternatives;
-    private Accumulator       weightAccumulator;
-    private Accumulator       preferenceAccumulator;
-    private WeightContainer   weight;
+    private @NotNull  List<Alternative> alternatives;
+    private @Nullable Accumulator       weightAccumulator;
+    private @Nullable Accumulator       preferenceAccumulator;
+    private @Nullable WeightContainer   weight;
 
     public WP()
     {
@@ -50,7 +51,7 @@ public class WP
     {
         if(alternatives.size() > 0)
         {
-            for(final Alternative alternative : this.alternatives)
+            for(@NotNull final Alternative alternative : this.alternatives)
             {
                 alternative.calculatePreferences(this.weight);
             }
@@ -64,13 +65,13 @@ public class WP
 
     public void ranking()
     {
-        if(alternatives.size() > 0)
+        if(this.alternatives.size() > 0)
         {
-            for(final Alternative alternative : this.alternatives)
+            for(@NotNull final Alternative alternative : this.alternatives)
             {
                 alternative.collectPreferences(this.preferenceAccumulator);
             }
-            for(final Alternative alternative : this.alternatives)
+            for(@NotNull final Alternative alternative : this.alternatives)
             {
                 alternative.ranking(this.preferenceAccumulator);
             }
@@ -82,6 +83,11 @@ public class WP
         }
     }
 
+    public void sort()
+    {
+        this.alternatives.sort(Comparator.naturalOrder());
+    }
+
     public void process()
     {
         this.compile();
@@ -90,22 +96,14 @@ public class WP
         this.sort();
     }
 
-    public void sort()
-    {
-        Collections.sort(this.alternatives, Comparator.naturalOrder());
-    }
-
-    public boolean addAlternative(Alternative t)
-    {
-        return alternatives.add(t);
-    }
-
     public Alternative getBestAlternative()
     {
-        Alternative best = null;
+        @Nullable Alternative best = null;
         if(alternatives.size() > 0)
         {
-            best = alternatives.get(0);
+            @NotNull final Alternative first = this.alternatives.get(0);
+            @NotNull final Alternative last  = this.alternatives.get(this.alternatives.size() - 1);
+            best = first.compareTo(last) >= 0 ? first : last;
         }
         else
         {
@@ -115,38 +113,43 @@ public class WP
         return best;
     }
 
-    public Accumulator getWeightAccumulator()
+    public boolean addAlternative(@NotNull Alternative t)
+    {
+        return alternatives.add(t);
+    }
+
+    @NotNull public List<Alternative> getAlternatives()
+    {
+        return this.alternatives;
+    }
+
+    @Nullable public Accumulator getWeightAccumulator()
     {
         return this.weightAccumulator;
     }
 
-    public void setWeightAccumulator(Accumulator weightAccumulator)
+    public void setWeightAccumulator(@NotNull Accumulator weightAccumulator)
     {
         this.weightAccumulator = weightAccumulator;
     }
 
-    public Accumulator getPreferenceAccumulator()
+    @Nullable public Accumulator getPreferenceAccumulator()
     {
         return this.preferenceAccumulator;
     }
 
-    public void setPreferenceAccumulator(Accumulator preferenceAccumulator)
+    public void setPreferenceAccumulator(@NotNull Accumulator preferenceAccumulator)
     {
         this.preferenceAccumulator = preferenceAccumulator;
     }
 
-    public WeightContainer getWeight()
+    @Nullable public WeightContainer getWeight()
     {
         return this.weight;
     }
 
-    public void setWeight(WeightContainer weight)
+    public void setWeight(@NotNull WeightContainer weight)
     {
         this.weight = weight;
-    }
-
-    public List<Alternative> getAlternatives()
-    {
-        return this.alternatives;
     }
 }
