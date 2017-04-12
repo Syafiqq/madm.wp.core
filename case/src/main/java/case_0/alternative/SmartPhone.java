@@ -11,6 +11,7 @@ import case_0.criterion.ScreenDimension;
 import case_0.criterion.WebAccess;
 import case_0.criterion.Weight;
 import case_0.properties.SimpleProperty;
+import case_1.alternative.Warehouse;
 import factory.Alternative;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -159,16 +160,6 @@ public class SmartPhone extends Alternative<PriorityContainer, DoubleAccumulator
         this.properties = properties;
     }
 
-    @Override public boolean betterThan(@NotNull Alternative alternative)
-    {
-        boolean isBetter = false;
-        if(alternative instanceof SmartPhone)
-        {
-            isBetter = this.getVectorV() > ((SmartPhone) alternative).getVectorV();
-        }
-        return isBetter;
-    }
-
     @Override public void calculatePreferences(@NotNull PriorityContainer alternative)
     {
         this.cost.calculate(alternative.getCost());
@@ -216,5 +207,10 @@ public class SmartPhone extends Alternative<PriorityContainer, DoubleAccumulator
                 .append("vectorS", vectorS)
                 .append("vectorV", vectorV)
                 .toString();
+    }
+
+    @Override public int compareTo(@NotNull Alternative o)
+    {
+        return -Double.compare(this.getVectorV(), ((Warehouse) o).getVectorV());
     }
 }
