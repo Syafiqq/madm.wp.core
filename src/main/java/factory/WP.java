@@ -103,7 +103,7 @@ public class WP
         {
             @NotNull final Alternative first = this.alternatives.get(0);
             @NotNull final Alternative last  = this.alternatives.get(this.alternatives.size() - 1);
-            best = first.compareTo(last) >= 0 ? first : last;
+            best = first.compareTo(last) >= 0 ? last : first;
         }
         else
         {
