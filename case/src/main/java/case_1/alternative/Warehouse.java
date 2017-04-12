@@ -60,16 +60,6 @@ public class Warehouse extends Alternative<PriorityContainer, DoubleAccumulator>
         this.vectorV = vectorV;
     }
 
-    @Override public boolean betterThan(@NotNull Alternative alternative)
-    {
-        boolean isBetter = false;
-        if(alternative instanceof Warehouse)
-        {
-            isBetter = this.getVectorV() > ((Warehouse) alternative).getVectorV();
-        }
-        return isBetter;
-    }
-
     @Override public void calculatePreferences(@NotNull PriorityContainer alternative)
     {
         this.marketDistance.calculate(alternative.getMarketDistance());
@@ -168,5 +158,10 @@ public class Warehouse extends Alternative<PriorityContainer, DoubleAccumulator>
                 .append("vectorS", vectorS)
                 .append("vectorV", vectorV)
                 .toString();
+    }
+
+    @Override public int compareTo(@NotNull Alternative o)
+    {
+        return -Double.compare(this.getVectorV(), ((Warehouse) o).getVectorV());
     }
 }
