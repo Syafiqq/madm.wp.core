@@ -60,7 +60,7 @@ public class WP
         }
     }
 
-    private void ranking()
+    public void ranking()
     {
         if(alternatives.size() > 0)
         {
