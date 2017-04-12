@@ -1,5 +1,7 @@
 package factory;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -85,6 +87,12 @@ public class WP
         this.compile();
         this.calculate();
         this.ranking();
+        this.sort();
+    }
+
+    public void sort()
+    {
+        Collections.sort(this.alternatives, Comparator.naturalOrder());
     }
 
     public boolean addAlternative(Alternative t)
@@ -97,14 +105,7 @@ public class WP
         Alternative best = null;
         if(alternatives.size() > 0)
         {
-            best = this.alternatives.get(0);
-            for(final Alternative alternative : this.alternatives)
-            {
-                if(alternative.betterThan(best))
-                {
-                    best = alternative;
-                }
-            }
+            best = alternatives.get(0);
         }
         else
         {
@@ -142,5 +143,10 @@ public class WP
     public void setWeight(WeightContainer weight)
     {
         this.weight = weight;
+    }
+
+    public List<Alternative> getAlternatives()
+    {
+        return this.alternatives;
     }
 }
