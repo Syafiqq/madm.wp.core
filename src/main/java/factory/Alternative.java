@@ -1,6 +1,5 @@
 package factory;
 
-import factory.interfaces.AlternativeComparator;
 import org.jetbrains.annotations.NotNull;
 
 /*
@@ -10,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
  * Email        : syafiq.rezpector@gmail.com
  * Github       : syafiqq
  */
-public abstract class Alternative<WC extends WeightContainer, PA extends Accumulator> implements AlternativeComparator<Alternative>
+public abstract class Alternative<WC extends WeightContainer, PA extends Accumulator> implements Comparable<Alternative>
 {
     public abstract void calculatePreferences(@NotNull WC alternative);
 
