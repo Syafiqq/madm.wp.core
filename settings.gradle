@@ -1,3 +1,4 @@
 rootProject.name = 'wp'
 include 'case'
+include 'core'
 

@@ -11,7 +11,6 @@ import case_0.criterion.ScreenDimension;
 import case_0.criterion.WebAccess;
 import case_0.criterion.Weight;
 import case_0.properties.SimpleProperty;
-import case_1.alternative.Warehouse;
 import factory.Alternative;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.jetbrains.annotations.NotNull;
@@ -211,6 +210,6 @@ public class SmartPhone extends Alternative<PriorityContainer, DoubleAccumulator
 
     @Override public int compareTo(@NotNull Alternative o)
     {
-        return -Double.compare(this.getVectorV(), ((Warehouse) o).getVectorV());
+        return -Double.compare(this.getVectorV(), ((SmartPhone) o).getVectorV());
     }
 }
