@@ -5,7 +5,7 @@ WP
 **WP** stands for Weighted Product. **WP** is part of the **MCDM**.
 
 > **Note:** You can find more information:
-> - about **SAW** [here][1],
+> - about **WP** [here][1],
 > - about **MCDM** [here][2].
 
 
