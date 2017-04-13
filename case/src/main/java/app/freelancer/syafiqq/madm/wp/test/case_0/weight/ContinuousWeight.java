@@ -1,0 +1,57 @@
+package app.freelancer.syafiqq.madm.wp.test.case_0.weight;
+
+import app.freelancer.syafiqq.madm.wp.core.factory.Weight;
+import app.freelancer.syafiqq.madm.wp.test.case_0.accumulator.DoubleAccumulator;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.jetbrains.annotations.NotNull;
+
+/*
+ * This <wp> created by : 
+ * Name         : syafiq
+ * Date / Time  : 11 April 2017, 4:15 AM.
+ * Email        : syafiq.rezpector@gmail.com
+ * Github       : syafiqq
+ */
+public class ContinuousWeight extends Weight<DoubleAccumulator>
+{
+    private double weight;
+    private double normalized;
+
+    public ContinuousWeight(double weight)
+    {
+        this.weight = weight;
+    }
+
+    public double getNormalized()
+    {
+        return this.normalized;
+    }
+
+    public void setNormalized(double normalized)
+    {
+        this.normalized = normalized;
+    }
+
+    public double getWeight()
+    {
+        return this.weight;
+    }
+
+    public void setWeight(double weight)
+    {
+        this.weight = weight;
+    }
+
+    @Override public void normalize(@NotNull DoubleAccumulator accumulator)
+    {
+        this.normalized = this.weight / accumulator.getValue();
+    }
+
+    @Override public String toString()
+    {
+        return new ToStringBuilder(this)
+                .append("weight", weight)
+                .append("normalized", normalized)
+                .toString();
+    }
+}
